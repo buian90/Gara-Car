@@ -1,13 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
-import About from "../pages/About";
-import Booking from "../pages/Booking";
-import Service from "../pages/Service";
-import Team from "../pages/Team";
-import Testimonial from "../pages/Testimonial";
-import Contact from "../pages/Contact";
+import About from "../pageAbout/About";
+import Booking from "../pageBooking/Booking";
+import Service from "../pageService.jsx/Service";
+import Team from "../pageTeam/Team";
+import Testimonial from "../pageTestimonial.jsx/Testimonial";
+import Contact from "../pageContact/Contact";
 import Layout from "./components/Layout";
+import Login from "../pages/Login";
+import CarSale from "../pageCar/CarSale";
+import BookingCar from "../pageBookingCar/BookingCar";
+import Backtop from ".//components/BackTop";
+import PrivateRouter from "./auth/PrivateRouter";
 
 function App() {
   return (
@@ -16,13 +21,20 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="NotFound" element={<NotFound />} />
-            <Route path="About" element={<About />} />
-            <Route path="Booking" element={<Booking />} />
-            <Route path="Service" element={<Service />} />
-            <Route path="Team" element={<Team />} />
-            <Route path="Testimonial" element={<Testimonial />} />
-            <Route path="Contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="about" element={<About />} />
+            <Route path="booking" element={<Booking />} />
+            <Route path="service" element={<Service />} />
+            <Route path="team" element={<Team />} />
+            <Route path="testimonial" element={<Testimonial />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="carsale" element={<CarSale />} />
+            <Route path="login" element={<Login />} />
+            <Route path="bookingcar" element={<BookingCar />} />
+            <Route path="backtop" element={<Backtop />} />
+
+            {/* Admin */}
+            <Route path="dashboad" element={<PrivateRouter />} />
           </Route>
         </Routes>
       </BrowserRouter>

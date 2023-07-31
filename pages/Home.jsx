@@ -1,11 +1,16 @@
 import BackTop from "../src/components/BackTop";
-import SliderTop from "../src/components/SliderTop";
-import Booking from "./Booking";
+
+import TestSlider from "../src/components/Slider";
+
 import Fact from "./Fact";
-import ServiceBot from "./ServiceBot";
-import ServiceTop from "./ServiceTop";
-import Team from "./Team";
-import Testimonial from "./Testimonial";
+
+import ServiceBot from "../pageService.jsx/ServiceBot";
+import ServiceTop from "../pageService.jsx/ServiceTop";
+
+import FormBooking from "../pageBooking/FormBooking";
+import AboutCenter from "../pageAbout/AboutCenter";
+import TeamCenter from "../pageTeam/TeamCenter";
+import TestiCenter from "../pageTestimonial.jsx/TestiCenter";
 
 const Home = () => {
   return (
@@ -23,14 +28,14 @@ const Home = () => {
         </div>
       </div> */}
 
-      <SliderTop />
+      <TestSlider />
       <ServiceTop />
-
+      <AboutCenter />
       <Fact />
       <ServiceBot />
-      <Booking />
-      <Team />
-      <Testimonial />
+      <FormBooking />
+      <TeamCenter />
+      <TestiCenter />
       <BackTop />
     </>
   );

@@ -1,6 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const Header = () => {
+  const navigate = useNavigate();
+  // Kiem tra xem nguoi dung dang nhap chua: isLogin -> true: dang xuat, false: dang nhap
+  const isAuth = localStorage.getItem("isLogin");
+  // khi bấm vào đăng xuất
+  const handleLogOut = () => {
+    // xóa trạng thái đăng nhập trong local
+    localStorage.removeItem("isLogin");
+    toast.success("Đăng xuất thành công", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    // điều hướng về trang chủ
+    setTimeout(() => {
+      Navigate("/");
+    }, 1500);
+  };
   return (
     <>
       <div className="container-fluid bg-light p-0">
@@ -40,10 +63,16 @@ const Header = () => {
                 <i className="fab fa-linkedin-in"></i>
               </Link>
               <Link
-                className="btn btn-sm-square bg-white text-primary me-0"
+                className="btn btn-sm-square bg-white text-primary me-1"
                 to=""
               >
                 <i className="fab fa-instagram"></i>
+              </Link>
+              <Link
+                className="btn btn-sm-square bg-white text-primary me-1"
+                to=""
+              >
+                <i className="fa-solid fa-cart-shopping"></i>
               </Link>
             </div>
           </div>
@@ -52,7 +81,7 @@ const Header = () => {
 
       <nav className="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <Link
-          to="index.html"
+          to="/"
           className="navbar-brand d-flex align-items-center px-4 px-lg-5"
         >
           <h2 className="m-0 text-primary">
@@ -69,8 +98,11 @@ const Header = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <div className="navbar-nav ms-auto p-4 p-lg-0">
-            <Link to="index" className="nav-item nav-link active">
+            <Link to="/" className="nav-item nav-link active">
               Home
+            </Link>
+            <Link to="carsale" className="nav-item nav-link">
+              Car
             </Link>
             <Link to="about" className="nav-item nav-link">
               About
@@ -90,29 +122,55 @@ const Header = () => {
                 <Link to="booking" className="dropdown-item">
                   Booking
                 </Link>
-                <Link to="./Team.jsx" className="dropdown-item">
+                <Link to="team" className="dropdown-item">
                   Technicians
                 </Link>
-                <Link to="./Testimonial.jsx" className="dropdown-item">
+                <Link to="testimonial" className="dropdown-item">
                   Testimonial
                 </Link>
-                <Link to="404.html" className="dropdown-item">
+                <Link to="notfound" className="dropdown-item">
                   404 Page
                 </Link>
               </div>
             </div>
-            <Link to="contact.html" className="nav-item nav-link">
+            <Link to="contact" className="nav-item nav-link">
               Contact
             </Link>
           </div>
-          <Link
-            to=""
-            className="btn btn-primary py-4 px-lg-5 d-none d-lg-block"
-          >
-            LogIn<i className="fa fa-arrow-right ms-3"></i>
-          </Link>
+          {isAuth ? (
+            <>
+              <Link
+                to="/"
+                className="btn btn-primary py-4 px-lg-5 d-none d-lg-block"
+                onClick={handleLogOut}
+              >
+                LogOut <i className="fa fa-arrow-right ms-3"></i>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                to="login"
+                className="btn btn-primary py-4 px-lg-5 d-none d-lg-block"
+              >
+                LogIn<i className="fa fa-arrow-right ms-3"></i>
+              </Link>
+            </>
+          )}
         </div>
       </nav>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };
