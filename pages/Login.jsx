@@ -64,7 +64,7 @@ const Login = () => {
       console.log("susscess full");
       // hiện thông báo khi đăng nhập thành công
       toast.success("Đăng nhập thành công", {
-        position: "top-right",
+        position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -79,7 +79,7 @@ const Login = () => {
     } else {
       // hiện thông báo khi đăng nhập sai
       toast.error("Đăng nhập thất bại", {
-        position: "top-right",
+        position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,

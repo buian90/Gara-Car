@@ -59,7 +59,7 @@ const BookingCar = () => {
               </div>
               <div>
                 <Link className="px-2" to="">
-                  <button className="btn-buy-now">Buy Now !!!</button>
+                  <button className="btn-buy-now" id="btnBuy">Buy Now !!!</button>
                 </Link>
               </div>
             </div>

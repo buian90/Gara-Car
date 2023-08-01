@@ -1,6 +1,9 @@
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
+
+
+
 const Header = () => {
   const navigate = useNavigate();
   // Kiem tra xem nguoi dung dang nhap chua: isLogin -> true: dang xuat, false: dang nhap
@@ -10,7 +13,7 @@ const Header = () => {
     // xóa trạng thái đăng nhập trong local
     localStorage.removeItem("isLogin");
     toast.success("Đăng xuất thành công", {
-      position: "top-right",
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -26,6 +29,7 @@ const Header = () => {
   };
   return (
     <>
+    
       <div className="container-fluid bg-light p-0">
         <div className="row gx-0 d-none d-lg-flex">
           <div className="col-lg-7 px-5 text-start">
@@ -160,7 +164,7 @@ const Header = () => {
         </div>
       </nav>
       <ToastContainer
-        position="top-right"
+        position="top-center"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}

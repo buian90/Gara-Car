@@ -25,7 +25,7 @@ const TableProduct = ({ dataTable, getApi }) => {
       });
       getApi();
       toast.success("Delete success!", {
-        position: "top-right",
+        position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -37,7 +37,7 @@ const TableProduct = ({ dataTable, getApi }) => {
     } catch (error) {
       console.log(error);
       toast.error("Delete false!", {
-        position: "top-right",
+        position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
