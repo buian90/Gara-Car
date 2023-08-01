@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import Carbot from "./Carbot";
 import BannerCar from "./BannerCar";
-import BackTop from '../src/components/BackTop'
+import BackTop from "../src/components/BackTop";
 
 const CarSale = () => {
   return (
     <>
-    <BannerCar/>
+      <BannerCar />
       <div className="container-fluid py-5">
         <div className="container pt-5 pb-3">
           <h1 className="display-4 text-uppercase text-center mb-5">
@@ -36,7 +36,7 @@ const CarSale = () => {
                   </div>
                 </div>
                 <Link className="btn btn-primary px-3" to="/bookingcar">
-                  $99.00/Day
+                  $199.00
                 </Link>
               </div>
             </div>
@@ -63,7 +63,7 @@ const CarSale = () => {
                   </div>
                 </div>
                 <Link className="btn btn-primary px-3" to="">
-                  $99.00/Day
+                  $699.00
                 </Link>
               </div>
             </div>
@@ -90,7 +90,7 @@ const CarSale = () => {
                   </div>
                 </div>
                 <Link className="btn btn-primary px-3" to="">
-                  $99.00/Day
+                  $599.00
                 </Link>
               </div>
             </div>
@@ -117,7 +117,7 @@ const CarSale = () => {
                   </div>
                 </div>
                 <Link className="btn btn-primary px-3" to="">
-                  $99.00/Day
+                  $399.00
                 </Link>
               </div>
             </div>
@@ -144,7 +144,7 @@ const CarSale = () => {
                   </div>
                 </div>
                 <Link className="btn btn-primary px-3" to="">
-                  $99.00/Day
+                  $299.00
                 </Link>
               </div>
             </div>
@@ -171,15 +171,15 @@ const CarSale = () => {
                   </div>
                 </div>
                 <Link className="btn btn-primary px-3" to="">
-                  $99.00/Day
+                  $150.00
                 </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <Carbot/>
-      <BackTop/>
+      <Carbot />
+      <BackTop />
     </>
   );
 };

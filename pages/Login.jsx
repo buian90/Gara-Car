@@ -52,7 +52,6 @@ const Login = () => {
       email: "", // email: "" la rong , neu email: "abc@gmail.com" thi UI xem hien thi ra abc@gmail.com o input email
       password: "",
     },
-   
   }); // xem lai o bai useForm
 
   const onSubmit = (data) => {
@@ -96,7 +95,7 @@ const Login = () => {
   return (
     <>
       <Form className="wrap-form" onSubmit={handleSubmit(onSubmit)}>
-        <h1>Form Đăng Nhập</h1>
+        <h1>Welcome to Gara-Car</h1>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email :</Form.Label>
 

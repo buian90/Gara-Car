@@ -3,7 +3,10 @@ import BookingCarDetails from "./BookingCarDetails";
 import BannerBookingCar from "./BannerBookingCar";
 import BackTop from "../src/components/BackTop";
 
+
+
 const BookingCar = () => {
+  
   return (
     <>
       <BannerBookingCar />
@@ -58,8 +61,8 @@ const BookingCar = () => {
                 </div>
               </div>
               <div>
-                <Link className="px-2" to="">
-                  <button className="btn-buy-now" id="btnBuy">Buy Now !!!</button>
+                <Link className="btn-buy-now" to="/carsale">
+                  $199.00 - Buy Now
                 </Link>
               </div>
             </div>
