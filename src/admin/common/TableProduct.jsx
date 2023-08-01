@@ -23,7 +23,7 @@ const TableProduct = ({ dataTable, getApi }) => {
       });
       getApi();
       toast.success("Delete success!", {
-        position: "top-right",
+        position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -35,7 +35,7 @@ const TableProduct = ({ dataTable, getApi }) => {
     } catch (error) {
       console.log(error);
       toast.error("Delete false!", {
-        position: "top-right",
+        position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -55,7 +55,7 @@ const TableProduct = ({ dataTable, getApi }) => {
     setoldData(item);
     setShow(true);
   };
-  //   console.log(oldData);
+  console.log(dataTable, "dataTable");
   return (
     <div className="wrap-form-admin">
       <Table striped bordered hover>
@@ -69,8 +69,7 @@ const TableProduct = ({ dataTable, getApi }) => {
           </tr>
         </thead>
         <tbody>
-          {dataTable &&
-            dataTable.length > 0 &&
+          {dataTable.length > 0 &&
             dataTable.map((item) => {
               //2.  {dataTable.length && dataTable.map((item) => {...})} vì data là object nên sẽ dùng map để hiển thị data
               //3.1 copy thẻ tr vào {}
@@ -102,7 +101,7 @@ const TableProduct = ({ dataTable, getApi }) => {
           <Offcanvas.Title>Edit Product</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <FormProduct dataTable={oldData} setShow={setShow} getApi={getApi} />
+          <FormProduct oldData={oldData} setShow={setShow} getApi={getApi} />
         </Offcanvas.Body>
       </Offcanvas>
     </div>

@@ -554,3 +554,6 @@ h6,
   background-color: #b8101f;
   border-color: #ad0f1d;
 }
+.offcanvas.offcanvas-start.show {
+  width: 80%;
+}

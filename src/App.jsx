@@ -35,6 +35,7 @@ function App() {
 
             {/* Admin */}
             <Route path="dashboad" element={<PrivateRouter />} />
+            
           </Route>
         </Routes>
       </BrowserRouter>

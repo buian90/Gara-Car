@@ -26,7 +26,7 @@ const ProductsAdmin = () => {
     getApi(); //5. getApi() là tên function gọi lại vì ở dòng8 getApi là 1 function nên phải gọi lại để trả ra kết quả
     //6. phải ipmort axios và useState useEffect
   }, []);
-  console.log(data, "123");
+  
   return (
     <>
       <h3 className="text-center mt-4 my-4">List Car</h3>
