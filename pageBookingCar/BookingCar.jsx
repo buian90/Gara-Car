@@ -1,12 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import BookingCarDetails from "./BookingCarDetails";
 import BannerBookingCar from "./BannerBookingCar";
 import BackTop from "../src/components/BackTop";
-
-
+import Button from "react-bootstrap/esm/Button";
+import { toast } from "react-toastify";
 
 const BookingCar = () => {
-  
+  const handleClick = () => {
+    toast.success("Sản phẩm đã thêm vào giỏ hàng", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    setTimeout(() => {
+      Navigate("carsale"); // điều hướng đến trang carsale
+    }, 2000);
+  };
   return (
     <>
       <BannerBookingCar />
@@ -62,7 +76,7 @@ const BookingCar = () => {
               </div>
               <div>
                 <Link className="btn-buy-now" to="/carsale">
-                  $199.00 - Buy Now
+                  <Button onClick={handleClick}>$199.00 - Buy Now</Button>
                 </Link>
               </div>
             </div>
