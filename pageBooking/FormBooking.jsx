@@ -1,8 +1,25 @@
+import { Navigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const FormBooking = () => {
+  const handleClick = () => {
+    toast.success("Bạn đã book thành công", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    setTimeout(() => {
+      Navigate("carsale"); // điều hướng đến trang carsale
+    }, 2000);
+  };
   return (
     <>
-    <div
+      <div
         className="container-fluid bg-secondary booking my-5 wow fadeInUp"
         data-wow-delay="0.1s"
       >
@@ -84,6 +101,7 @@ const FormBooking = () => {
                       <button
                         className="btn btn-secondary w-100 py-3"
                         type="submit"
+                        onClick={handleClick}
                       >
                         Book Now
                       </button>
@@ -95,8 +113,20 @@ const FormBooking = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
-  )
-}
+  );
+};
 
-export default FormBooking
+export default FormBooking;
