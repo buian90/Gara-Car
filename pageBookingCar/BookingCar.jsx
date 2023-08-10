@@ -9,7 +9,7 @@ import { useCart } from "../src/components/CartContext";
 const BookingCar = () => {
   const handleClick = () => {
     const { increaseCartCount } = useCart();
-    alert("áhdgahjgdjahgsd")
+
     toast.success("Sản phẩm đã thêm vào giỏ hàng", {
       position: "top-center",
       autoClose: 5000,
