@@ -30,10 +30,12 @@ const Login = () => {
       url: urlLogin,
     });
     if (res) {
-      setUser(res.data[0]);
+      setUser(res.data);
       setLoading(false);
     }
-    setUser(res.data[0]);
+    setUser(res.data);
+    // console.log(res.data[0]);
+    //hien tai no trả về mảng đầu tền. -> bỏ [0] -> array object
   };
 
   useEffect(() => {
@@ -58,12 +60,23 @@ const Login = () => {
     // data la du lieu khi minh log ra no se hien ra "email va pass"
     // console.log(data);
     // b2 thêm điều kiện if else khi đăng nhập để so sánh với api
-    if (data.email === user.user && data.password === user.pass) {
+
+    // vong map -> array object -> map lặp -> if else
+
+    console.log(user);
+
+    const userLogin = user.find(
+      // nếu value (tham số có sẵn) nếu find thỏa mãn điều kiện value.user === data.email && value.pass === data.password sẽ lấy user và pass
+      (value) => value.user === data.email && value.pass === data.password
+    );
+
+    if (userLogin) {
       // lưu vào local
       localStorage.setItem("isLogin", true);
+      localStorage.setItem("userLogin", JSON.stringify(userLogin));
       console.log("susscess full");
       // hiện thông báo khi đăng nhập thành công
-      toast.success("Đăng nhập thành công", {
+      toast.success("Login success", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -78,7 +91,7 @@ const Login = () => {
       }, 1500);
     } else {
       // hiện thông báo khi đăng nhập sai
-      toast.error("Đăng nhập thất bại", {
+      toast.error("Login failed", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -89,6 +102,72 @@ const Login = () => {
         theme: "light",
       });
     }
+
+    // user.map((item) => {
+    //   console.log(item);
+    //   if (data.email === item.user && data.password === item.pass) {
+    //     // lưu vào local
+    //     localStorage.setItem("isLogin", true);
+    //     console.log("susscess full");
+    //     // hiện thông báo khi đăng nhập thành công
+    //     toast.success("Login success", {
+    //       position: "top-center",
+    //       autoClose: 5000,
+    //       hideProgressBar: false,
+    //       closeOnClick: true,
+    //       pauseOnHover: true,
+    //       draggable: true,
+    //       progress: undefined,
+    //       theme: "light",
+    //     });
+    //     setTimeout(() => {
+    //       navigate("/dashboad"); // điều hướng đến trang dashboad
+    //     }, 1500);
+    //   } else {
+    //     // hiện thông báo khi đăng nhập sai
+    //     toast.error("Login failed", {
+    //       position: "top-center",
+    //       autoClose: 5000,
+    //       hideProgressBar: false,
+    //       closeOnClick: true,
+    //       pauseOnHover: true,
+    //       draggable: true,
+    //       progress: undefined,
+    //       theme: "light",
+    //     });
+    //   }
+    // });
+    // if (data.email === user.user && data.password === user.pass) {
+    //   // lưu vào local
+    //   localStorage.setItem("isLogin", true);
+    //   console.log("susscess full");
+    //   // hiện thông báo khi đăng nhập thành công
+    //   toast.success("Login success", {
+    //     position: "top-center",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "light",
+    //   });
+    //   setTimeout(() => {
+    //     navigate("/dashboad"); // điều hướng đến trang dashboad
+    //   }, 1500);
+    // } else {
+    //   // hiện thông báo khi đăng nhập sai
+    //   toast.error("Login failed", {
+    //     position: "top-center",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "light",
+    //   });
+    // }
   };
   if (loading == true) return "loading...";
 
@@ -142,7 +221,7 @@ const Login = () => {
       </Form>
       {/* // LÀm phần thông báo cho đẹp */}
       <ToastContainer
-        position="top-left"
+        position="top-center"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}

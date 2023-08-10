@@ -13,32 +13,35 @@ import CarSale from "../pageCar/CarSale";
 import BookingCar from "../pageBookingCar/BookingCar";
 import Backtop from ".//components/BackTop";
 import PrivateRouter from "./auth/PrivateRouter";
+import PayMent from "../page PayMent/PayMent";
+import { CartProvider } from "./components/CartContext";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="*" element={<NotFound />} />
-            <Route path="about" element={<About />} />
-            <Route path="booking" element={<Booking />} />
-            <Route path="service" element={<Service />} />
-            <Route path="team" element={<Team />} />
-            <Route path="testimonial" element={<Testimonial />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="carsale" element={<CarSale />} />
-            <Route path="login" element={<Login />} />
-            <Route path="bookingcar" element={<BookingCar />} />
-            <Route path="backtop" element={<Backtop />} />
-
-            {/* Admin */}
-            <Route path="dashboad" element={<PrivateRouter />} />
-            
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="*" element={<NotFound />} />
+              <Route path="about" element={<About />} />
+              <Route path="booking" element={<Booking />} />
+              <Route path="service" element={<Service />} />
+              <Route path="team" element={<Team />} />
+              <Route path="testimonial" element={<Testimonial />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="carsale" element={<CarSale />} />
+              <Route path="login" element={<Login />} />
+              <Route path="bookingcar" element={<BookingCar />} />
+              <Route path="backtop" element={<Backtop />} />
+              <Route path="payment" element={<PayMent />} />
+              {/* Admin */}
+              <Route path="dashboad" element={<PrivateRouter />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </CartProvider>
     </>
   );
 }

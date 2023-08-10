@@ -4,9 +4,12 @@ import BannerBookingCar from "./BannerBookingCar";
 import BackTop from "../src/components/BackTop";
 import Button from "react-bootstrap/esm/Button";
 import { toast } from "react-toastify";
+import { useCart } from "../src/components/CartContext";
 
 const BookingCar = () => {
   const handleClick = () => {
+    const { increaseCartCount } = useCart();
+    alert("áhdgahjgdjahgsd")
     toast.success("Sản phẩm đã thêm vào giỏ hàng", {
       position: "top-center",
       autoClose: 5000,
@@ -21,6 +24,7 @@ const BookingCar = () => {
       Navigate("carsale"); // điều hướng đến trang carsale
     }, 2000);
   };
+
   return (
     <>
       <BannerBookingCar />
@@ -76,7 +80,7 @@ const BookingCar = () => {
               </div>
               <div>
                 <Link className="btn-buy-now" to="/carsale">
-                  <Button onClick={handleClick}>$199.00 - Buy Now</Button>
+                  <Button onClick={handleClick}>Add to cart</Button>
                 </Link>
               </div>
             </div>
