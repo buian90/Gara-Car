@@ -1,19 +1,26 @@
-import { useState, createContext, useContext } from "react";
+// CartContext.js
+
+import { createContext, useContext, useState } from "react";
 
 const CartContext = createContext();
-export function CartProvider({ children }) {
+
+export const useCart = () => {
+  return useContext(CartContext);
+};
+
+export const CartProvider = ({ children }) => {
   const [cartCount, setCartCount] = useState(0);
+
   const increaseCartCount = () => {
-    setCartCount(cartCount + 1);
+    setCartCount((prevCount) => prevCount + 1);
+  };
+
+  const contextValue = {
+    cartCount,
+    increaseCartCount,
   };
 
   return (
-    <CartContext.Provider value={{ cartCount, increaseCartCount }}>
-      {children}
-    </CartContext.Provider>
+    <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
   );
-}
-
-export function useCart() {
-  return useContext(CartContext);
-}
+};

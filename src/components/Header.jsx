@@ -5,7 +5,8 @@ import { useCart } from "./CartContext";
 
 const Header = () => {
   const { cartCount } = useCart();
-
+  // console.log(cartCount);
+  const cart = JSON.parse(localStorage.getItem("arrayCart"));
   const navigate = useNavigate();
   // Kiem tra xem nguoi dung dang nhap chua: isLogin -> true: dang xuat, false: dang nhap
   const isAuth = localStorage.getItem("isLogin");
@@ -139,9 +140,16 @@ const Header = () => {
               Contact
             </Link>
 
-            <Link to="payment" className="nav-item nav-link" id="Cart">
+            <Link
+              to={{
+                pathname: "/payments",
+                state: { cartItemCount: cartCount },
+              }}
+              className="nav-item nav-link"
+              id="Cart"
+            >
               <i className="bi bi-cart-plus"></i>
-              <span className="cout-cart">{cartCount}</span>
+              <span className="cout-cart"> {cart ? cart.length : 0}</span>
             </Link>
           </div>
           {isAuth ? (
