@@ -18,6 +18,7 @@ import PrivateRouter from "./auth/PrivateRouter";
 import { CartProvider } from "./components/CartContext";
 import PayMents from "../pagePayMent/PayMents";
 
+
 function App() {
   return (
     <>
@@ -38,6 +39,7 @@ function App() {
               <Route path="bookingcar" element={<BookingCar />} />
               <Route path="backtop" element={<Backtop />} />
               <Route path="payments" element={<PayMents />} />
+             
 
               {/* Admin */}
               <Route path="dashboad" element={<PrivateRouter />} />

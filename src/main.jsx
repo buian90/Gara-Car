@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "react-toastify/dist/ReactToastify.css";
 import "../assets/js/main.js";
 import "../assets/css/style.css";
+import "react-credit-cards/es/styles-compiled.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
