@@ -1,7 +1,15 @@
+// import { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+<<<<<<< HEAD
+=======
+import { useCart } from "./CartContext";
+>>>>>>> d8b40126c5ff9c4b2bd8acf511c72fe3446cc22f
 
 const Header = () => {
+  const { cartCount } = useCart();
+  // console.log(cartCount);
+  const cart = JSON.parse(localStorage.getItem("arrayCart"));
   const navigate = useNavigate();
   // Kiem tra xem nguoi dung dang nhap chua: isLogin -> true: dang xuat, false: dang nhap
   const isAuth = localStorage.getItem("isLogin");
@@ -134,8 +142,22 @@ const Header = () => {
             <Link to="contact" className="nav-item nav-link">
               Contact
             </Link>
+<<<<<<< HEAD
             <Link to="cart" className="nav-item nav-link">
               <i className="bi bi-cart-plus"></i>
+=======
+
+            <Link
+              to={{
+                pathname: "/payments",
+                state: { cartItemCount: cartCount },
+              }}
+              className="nav-item nav-link"
+              id="Cart"
+            >
+              <i className="bi bi-cart-plus"></i>
+              <span className="cout-cart"> {cart ? cart.length : 0}</span>
+>>>>>>> d8b40126c5ff9c4b2bd8acf511c72fe3446cc22f
             </Link>
           </div>
           {isAuth ? (

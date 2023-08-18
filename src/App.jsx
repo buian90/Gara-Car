@@ -11,30 +11,39 @@ import Layout from "./components/Layout";
 import Login from "../pages/Login";
 import CarSale from "../pageCar/CarSale";
 import BookingCar from "../pageBookingCar/BookingCar";
+
 import Backtop from ".//components/BackTop";
 import PrivateRouter from "./auth/PrivateRouter";
 import Cart from "../pageShoppingCart/Cart";
 import HomeCart from "../pageShoppingCart/HomeCart";
 
+import { CartProvider } from "./components/CartContext";
+import PayMents from "../pagePayMent/PayMents";
+
+
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="*" element={<NotFound />} />
-            <Route path="about" element={<About />} />
-            <Route path="booking" element={<Booking />} />
-            <Route path="service" element={<Service />} />
-            <Route path="team" element={<Team />} />
-            <Route path="testimonial" element={<Testimonial />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="carsale" element={<CarSale />} />
-            <Route path="login" element={<Login />} />
-            <Route path="bookingcar" element={<BookingCar />} />
-            <Route path="backtop" element={<Backtop />} />
+      <CartProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="*" element={<NotFound />} />
+              <Route path="about" element={<About />} />
+              <Route path="booking" element={<Booking />} />
+              <Route path="service" element={<Service />} />
+              <Route path="team" element={<Team />} />
+              <Route path="testimonial" element={<Testimonial />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="carsale" element={<CarSale />} />
+              <Route path="login" element={<Login />} />
+              <Route path="bookingcar" element={<BookingCar />} />
+              <Route path="backtop" element={<Backtop />} />
+              <Route path="payments" element={<PayMents />} />
+             
 
+<<<<<<< HEAD
             
             
 
@@ -43,6 +52,14 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+=======
+              {/* Admin */}
+              <Route path="dashboad" element={<PrivateRouter />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </CartProvider>
+>>>>>>> d8b40126c5ff9c4b2bd8acf511c72fe3446cc22f
     </>
   );
 }

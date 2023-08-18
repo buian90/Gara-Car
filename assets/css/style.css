@@ -1,3 +1,7 @@
+div#root {
+  overflow: hidden;
+}
+
 /********** Template CSS **********/
 :root {
   --primary: #d81324;
@@ -556,4 +560,34 @@ h6,
 }
 .offcanvas.offcanvas-start.show {
   width: 80%;
+}
+.payments1 {
+  padding-right: 50px;
+  padding-top: 20px;
+}
+.payments2 {
+  border-left: 1px solid #cbcbcb;
+  padding-left: 60px;
+
+  padding-top: 20px;
+  background-color: #f2f2f2;
+}
+.pay-input {
+  margin-bottom: 20px;
+}
+.App-payment {
+  margin-top: 50px;
+}
+@media (min-width: 768px) {
+  .paymentsform input {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .col-lg-6.col-md-6.col-sm-12.payments1 {
+    order: 1;
+  }
+  .paymentsform input {
+    width: 100%;
+  }
 }

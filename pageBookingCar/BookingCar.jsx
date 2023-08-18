@@ -1,13 +1,60 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BookingCarDetails from "./BookingCarDetails";
 import BannerBookingCar from "./BannerBookingCar";
 import BackTop from "../src/components/BackTop";
 import Button from "react-bootstrap/esm/Button";
 import { toast } from "react-toastify";
+import { useCart } from "../src/components/CartContext";
+import CarSale from "../pageCar/CarSale";
+import { useState } from "react";
 
 const BookingCar = () => {
+  const navigate = useNavigate();
+  const { increaseCartCount } = useCart();
   const handleClick = () => {
+<<<<<<< HEAD
     toast.success("Product added to cart", {
+=======
+    // lay gia tri cua san pham
+    const imgCart = document.querySelector(".img-fluid").src;
+    const priceCart = document.querySelector(".price-cart").innerHTML;
+    const titleCart = document.querySelector(".title-cart").innerHTML;
+
+    // Kiem tra da mua san pham nao truoc day hay chua
+    const cartOld = JSON.parse(localStorage.getItem("arrayCart"));
+    let productExistsInCart = false;
+
+    cartOld &&
+      cartOld.map((item) => {
+        if (item.images === imgCart) {
+          productExistsInCart = true;
+          alert("San pham da ton tai trong gio hang");
+        }
+      });
+    if (productExistsInCart === true) {
+      return;
+    }
+    // increaseCartCount();
+    const arrayCart = [
+      {
+        images: imgCart,
+        price: priceCart,
+        title: titleCart,
+        quality: 1,
+      },
+    ];
+
+    // Them vao gio hang cua minh tu san pham thu 2 tro di
+    cartOld && cartOld.push(arrayCart);
+    console.log(cartOld);
+    if (cartOld) {
+      localStorage.setItem("arrayCart", JSON.stringify(cartOld));
+    } else {
+      localStorage.setItem("arrayCart", JSON.stringify(arrayCart));
+    }
+
+    toast.success("Sản phẩm đã thêm vào giỏ hàng", {
+>>>>>>> d8b40126c5ff9c4b2bd8acf511c72fe3446cc22f
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -18,7 +65,11 @@ const BookingCar = () => {
       theme: "light",
     });
     setTimeout(() => {
+<<<<<<< HEAD
       Navigate("cart"); // điều hướng đến trang carsale
+=======
+      navigate("/carsale"); // điều hướng đến trang carsale
+>>>>>>> d8b40126c5ff9c4b2bd8acf511c72fe3446cc22f
     }, 2000);
   };
 
@@ -28,17 +79,19 @@ const BookingCar = () => {
       {/* <!-- Detail Start --> */}
       <div className="container-fluid pt-5">
         <div className="container pt-5 pb-3">
-          <h1 className="display-4 text-uppercase mb-5">Mercedes Benz R3</h1>
+          <h1 className="display-4 text-uppercase mb-5 title-cart">
+            Mercedes Benz R3
+          </h1>
           <div className="row align-items-center pb-2">
             <div className="col-lg-6 mb-4">
               <img
                 className="img-fluid"
-                src="../assets/img/bg-banner.jpg"
+                src="../assets/img/car-rent-1.png"
                 alt=""
               />
             </div>
             <div className="col-lg-6 mb-4">
-              <h4 className="mb-2">$99.00</h4>
+              <h4 className="mb-2 price-cart">$99.00</h4>
               <div className="d-flex mb-3">
                 <h6 className="mr-2">Rating:</h6>
                 <div className="d-flex align-items-center justify-content-center mb-1">
@@ -76,7 +129,11 @@ const BookingCar = () => {
                 </div>
               </div>
               <div>
+<<<<<<< HEAD
                 <Link className="btn-buy-now" to="/cart">
+=======
+                <Link className="btn-buy-now">
+>>>>>>> d8b40126c5ff9c4b2bd8acf511c72fe3446cc22f
                   <Button onClick={handleClick}>Add to cart</Button>
                 </Link>
               </div>
