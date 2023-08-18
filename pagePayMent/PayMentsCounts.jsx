@@ -6,6 +6,8 @@ function CounterApp() {
   const decrement = () => {
     if (count > 0) {
       setCount(count - 1);
+    } else if (count == 0) {
+      alert("Cannot go below zero!");
     }
   };
 
