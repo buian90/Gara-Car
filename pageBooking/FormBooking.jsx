@@ -1,9 +1,9 @@
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 const FormBooking = () => {
   const handleClick = () => {
-    toast.success("Bạn đã book thành công", {
+    toast.success("You have successfully booked", {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -98,13 +98,15 @@ const FormBooking = () => {
                       ></textarea>
                     </div>
                     <div className="col-12">
-                      <button
-                        className="btn btn-secondary w-100 py-3"
-                        type="submit"
-                        onClick={handleClick}
-                      >
-                        Book Now
-                      </button>
+                      <Link to="/">
+                        <button
+                          className="btn btn-secondary w-100 py-3"
+                          type="submit"
+                          onClick={handleClick}
+                        >
+                          Book Now
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </form>

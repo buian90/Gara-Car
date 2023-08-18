@@ -13,6 +13,8 @@ import CarSale from "../pageCar/CarSale";
 import BookingCar from "../pageBookingCar/BookingCar";
 import Backtop from ".//components/BackTop";
 import PrivateRouter from "./auth/PrivateRouter";
+import Cart from "../pageShoppingCart/Cart";
+import HomeCart from "../pageShoppingCart/HomeCart";
 
 function App() {
   return (
@@ -33,9 +35,11 @@ function App() {
             <Route path="bookingcar" element={<BookingCar />} />
             <Route path="backtop" element={<Backtop />} />
 
+            
+            
+
             {/* Admin */}
             <Route path="dashboad" element={<PrivateRouter />} />
-            
           </Route>
         </Routes>
       </BrowserRouter>

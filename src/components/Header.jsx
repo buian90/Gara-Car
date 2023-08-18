@@ -1,18 +1,19 @@
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
-
-
-
 const Header = () => {
   const navigate = useNavigate();
   // Kiem tra xem nguoi dung dang nhap chua: isLogin -> true: dang xuat, false: dang nhap
   const isAuth = localStorage.getItem("isLogin");
+  const isInfo = JSON.parse(localStorage.getItem("userLogin"));
+
+  console.log(isInfo);
+  console.log(isAuth);
   // khi bấm vào đăng xuất
   const handleLogOut = () => {
     // xóa trạng thái đăng nhập trong local
     localStorage.removeItem("isLogin");
-    toast.success("Đăng xuất thành công", {
+    toast.success("Sign out success", {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -29,7 +30,6 @@ const Header = () => {
   };
   return (
     <>
-    
       <div className="container-fluid bg-light p-0">
         <div className="row gx-0 d-none d-lg-flex">
           <div className="col-lg-7 px-5 text-start">
@@ -71,12 +71,6 @@ const Header = () => {
                 to=""
               >
                 <i className="fab fa-instagram"></i>
-              </Link>
-              <Link
-                className="btn btn-sm-square bg-white text-primary me-1"
-                to=""
-              >
-                <i className="fa-solid fa-cart-shopping"></i>
               </Link>
             </div>
           </div>
@@ -140,16 +134,44 @@ const Header = () => {
             <Link to="contact" className="nav-item nav-link">
               Contact
             </Link>
+            <Link to="cart" className="nav-item nav-link">
+              <i className="bi bi-cart-plus"></i>
+            </Link>
           </div>
           {isAuth ? (
             <>
-              <Link
+              <div className="nav-item dropdown">
+                <Link
+                  to="#"
+                  className="btn btn-primary py-4 px-lg-5 d-none d-lg-block"
+                >
+                  <i className="bi bi-person-circle"></i>
+                </Link>
+                <div className="dropdown-menu fade-up m-0">
+                  <Link className="dropdown-item" style={{ color: "red" }}>
+                    Hi, <span>{isInfo.name}</span> !
+                  </Link>
+                  <Link to="dashboad" className="dropdown-item">
+                    Dashboad
+                  </Link>
+
+                  <Link
+                    to="login"
+                    className="dropdown-item"
+                    onClick={handleLogOut}
+                  >
+                    LogOut
+                  </Link>
+                </div>
+              </div>
+
+              {/* <Link
                 to="/"
                 className="btn btn-primary py-4 px-lg-5 d-none d-lg-block"
                 onClick={handleLogOut}
               >
                 LogOut <i className="fa fa-arrow-right ms-3"></i>
-              </Link>
+              </Link> */}
             </>
           ) : (
             <>
@@ -180,3 +202,23 @@ const Header = () => {
 };
 
 export default Header;
+
+// ShoppingCart -> gio hang -> Thanh toán -> click -> Thanh Toan (có form và thẻ ...)
+//
+// {/* <div className="box-login">
+// {/* <img src={`${isInfo.image}`} alt="" />  muốn thêm ảnh ng dùng*/}
+// <ul>
+//   <li>
+//     <Link
+//       to="/"
+//       className="btn btn-primary py-4 px-lg-5 d-none d-lg-block"
+//       onClick={handleLogOut}
+//     >
+//       Hello <span>{isInfo.name}</span> !
+//     </Link>
+//     <li>
+//       <Link to="/">Dashboad</Link>
+//     </li>
+//   </li>
+// </ul>
+// </div> */}

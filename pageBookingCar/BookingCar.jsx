@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 const BookingCar = () => {
   const handleClick = () => {
-    toast.success("Sản phẩm đã thêm vào giỏ hàng", {
+    toast.success("Product added to cart", {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -18,9 +18,10 @@ const BookingCar = () => {
       theme: "light",
     });
     setTimeout(() => {
-      Navigate("carsale"); // điều hướng đến trang carsale
+      Navigate("cart"); // điều hướng đến trang carsale
     }, 2000);
   };
+
   return (
     <>
       <BannerBookingCar />
@@ -75,8 +76,8 @@ const BookingCar = () => {
                 </div>
               </div>
               <div>
-                <Link className="btn-buy-now" to="/carsale">
-                  <Button onClick={handleClick}>$199.00 - Buy Now</Button>
+                <Link className="btn-buy-now" to="/cart">
+                  <Button onClick={handleClick}>Add to cart</Button>
                 </Link>
               </div>
             </div>

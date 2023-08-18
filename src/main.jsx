@@ -6,8 +6,19 @@ import "slick-carousel/slick/slick-theme.css";
 import "react-toastify/dist/ReactToastify.css";
 import "../assets/js/main.js";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+
+
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "../pageShoppingCart/store.jsx";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );

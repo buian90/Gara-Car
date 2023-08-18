@@ -41,7 +41,7 @@ const CarSale = () => {
               </div>
             </div>
             <div className="col-lg-4 col-md-6 mb-2">
-              <div className="rent-item active mb-4">
+              <div className="rent-item  mb-4">
                 <img
                   className="img-fluid mb-4"
                   src="../assets/img/car-rent-2.png"
