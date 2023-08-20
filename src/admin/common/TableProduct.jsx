@@ -61,7 +61,7 @@ const TableProduct = ({ dataTable, getApi }) => {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>#id</th>
+            <th>STT</th>
             <th>Name</th>
             <th>Price</th>
 
@@ -70,14 +70,14 @@ const TableProduct = ({ dataTable, getApi }) => {
         </thead>
         <tbody>
           {dataTable.length > 0 &&
-            dataTable.map((item) => {
+            dataTable.map((item, index) => {
               //2.  {dataTable.length && dataTable.map((item) => {...})} vì data là object nên sẽ dùng map để hiển thị data
               //3.1 copy thẻ tr vào {}
               //3.2 thêm key={item.id} ở return để hiển thị
               return (
                 //4.1 tương ứng với thẻ <th> thì mình sửa thành {item....} cho thẻ <td>
                 <tr key={item.id}>
-                  <td>{item.id}</td>
+                  <td>{index + 1}</td>
                   <td>{item.title}</td>
                   <td>{item.price} $</td>
 
