@@ -14,8 +14,7 @@ import BookingCar from "../pageBookingCar/BookingCar";
 
 import Backtop from ".//components/BackTop";
 import PrivateRouter from "./auth/PrivateRouter";
-import Cart from "../pageShoppingCart/Cart";
-import HomeCart from "../pageShoppingCart/HomeCart";
+
 
 import { CartProvider } from "./components/CartContext";
 import PayMents from "../pagePayMent/PayMents";
@@ -41,25 +40,15 @@ function App() {
               <Route path="bookingcar" element={<BookingCar />} />
               <Route path="backtop" element={<Backtop />} />
               <Route path="payments" element={<PayMents />} />
-             
 
-<<<<<<< HEAD
-            
-            
-
+           
             {/* Admin */}
-            <Route path="dashboad" element={<PrivateRouter />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-=======
-              {/* Admin */}
               <Route path="dashboad" element={<PrivateRouter />} />
             </Route>
           </Routes>
         </BrowserRouter>
       </CartProvider>
->>>>>>> d8b40126c5ff9c4b2bd8acf511c72fe3446cc22f
+
     </>
   );
 }

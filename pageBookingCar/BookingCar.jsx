@@ -12,9 +12,6 @@ const BookingCar = () => {
   const navigate = useNavigate();
   const { increaseCartCount } = useCart();
   const handleClick = () => {
-<<<<<<< HEAD
-    toast.success("Product added to cart", {
-=======
     // lay gia tri cua san pham
     const imgCart = document.querySelector(".img-fluid").src;
     const priceCart = document.querySelector(".price-cart").innerHTML;
@@ -54,7 +51,6 @@ const BookingCar = () => {
     }
 
     toast.success("Sản phẩm đã thêm vào giỏ hàng", {
->>>>>>> d8b40126c5ff9c4b2bd8acf511c72fe3446cc22f
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -65,11 +61,7 @@ const BookingCar = () => {
       theme: "light",
     });
     setTimeout(() => {
-<<<<<<< HEAD
-      Navigate("cart"); // điều hướng đến trang carsale
-=======
       navigate("/carsale"); // điều hướng đến trang carsale
->>>>>>> d8b40126c5ff9c4b2bd8acf511c72fe3446cc22f
     }, 2000);
   };
 
@@ -129,11 +121,7 @@ const BookingCar = () => {
                 </div>
               </div>
               <div>
-<<<<<<< HEAD
-                <Link className="btn-buy-now" to="/cart">
-=======
                 <Link className="btn-buy-now">
->>>>>>> d8b40126c5ff9c4b2bd8acf511c72fe3446cc22f
                   <Button onClick={handleClick}>Add to cart</Button>
                 </Link>
               </div>
