@@ -1,7 +1,10 @@
 // import { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+<<<<<<< HEAD
+=======
 import { useCart } from "./CartContext";
+>>>>>>> d8b40126c5ff9c4b2bd8acf511c72fe3446cc22f
 
 const Header = () => {
   const { cartCount } = useCart();
@@ -139,6 +142,10 @@ const Header = () => {
             <Link to="contact" className="nav-item nav-link">
               Contact
             </Link>
+<<<<<<< HEAD
+            <Link to="cart" className="nav-item nav-link">
+              <i className="bi bi-cart-plus"></i>
+=======
 
             <Link
               to={{
@@ -150,6 +157,7 @@ const Header = () => {
             >
               <i className="bi bi-cart-plus"></i>
               <span className="cout-cart"> {cart ? cart.length : 0}</span>
+>>>>>>> d8b40126c5ff9c4b2bd8acf511c72fe3446cc22f
             </Link>
           </div>
           {isAuth ? (
