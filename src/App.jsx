@@ -15,10 +15,8 @@ import BookingCar from "../pageBookingCar/BookingCar";
 import Backtop from ".//components/BackTop";
 import PrivateRouter from "./auth/PrivateRouter";
 
-
 import { CartProvider } from "./components/CartContext";
 import PayMents from "../pagePayMent/PayMents";
-
 
 function App() {
   return (
@@ -37,18 +35,16 @@ function App() {
               <Route path="contact" element={<Contact />} />
               <Route path="carsale" element={<CarSale />} />
               <Route path="login" element={<Login />} />
-              <Route path="bookingcar" element={<BookingCar />} />
+              <Route path="carsale/:id" element={<BookingCar />} />
               <Route path="backtop" element={<Backtop />} />
               <Route path="payments" element={<PayMents />} />
 
-           
-            {/* Admin */}
+              {/* Admin */}
               <Route path="dashboad" element={<PrivateRouter />} />
             </Route>
           </Routes>
         </BrowserRouter>
       </CartProvider>
-
     </>
   );
 }

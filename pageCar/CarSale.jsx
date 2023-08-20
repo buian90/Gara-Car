@@ -35,7 +35,7 @@ const CarSale = () => {
                       src={product.image}
                       alt=""
                     />
-                    <h4 className="text-uppercase mb-4">{product.name}</h4>
+                    <h4 className="text-uppercase mb-4">{product.title}</h4>
                     <div className="d-flex justify-content-center mb-4">
                       <div className="px-2">
                         <i className="fa fa-car text-primary mr-1"></i>
@@ -50,7 +50,7 @@ const CarSale = () => {
                         <span>{product.distance}km</span>
                       </div>
                     </div>
-                    <Link className="btn btn-primary px-3" to="/bookingcar">
+                    <Link className="btn btn-primary px-3" to={`${product.id}`}>
                       ${product.price}
                     </Link>
                   </div>

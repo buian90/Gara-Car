@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import BookingCarDetails from "./BookingCarDetails";
 import BannerBookingCar from "./BannerBookingCar";
 import BackTop from "../src/components/BackTop";
@@ -7,8 +7,13 @@ import { toast } from "react-toastify";
 import { useCart } from "../src/components/CartContext";
 import CarSale from "../pageCar/CarSale";
 import { useState } from "react";
+import useGetApi from "../pageCar/UseGetApi";
 
 const BookingCar = () => {
+  const { id } = useParams();
+  const [data] = useGetApi(`http://localhost:3000/products/${id}`);
+  console.log(data);
+
   const navigate = useNavigate();
   const { increaseCartCount } = useCart();
   const handleClick = () => {
@@ -72,18 +77,14 @@ const BookingCar = () => {
       <div className="container-fluid pt-5">
         <div className="container pt-5 pb-3">
           <h1 className="display-4 text-uppercase mb-5 title-cart">
-            Mercedes Benz R3
+            {data.title}
           </h1>
           <div className="row align-items-center pb-2">
             <div className="col-lg-6 mb-4">
-              <img
-                className="img-fluid"
-                src="../assets/img/car-rent-1.png"
-                alt=""
-              />
+              <img className="img-fluid" src={data.image} alt="" />
             </div>
             <div className="col-lg-6 mb-4">
-              <h4 className="mb-2 price-cart">$99.00</h4>
+              <h4 className="mb-2 price-cart">$ {data.price}</h4>
               <div className="d-flex mb-3">
                 <h6 className="mr-2">Rating:</h6>
                 <div className="d-flex align-items-center justify-content-center mb-1">
@@ -95,14 +96,7 @@ const BookingCar = () => {
                   <small>(250)</small>
                 </div>
               </div>
-              <p>
-                Tempor erat elitr at rebum at at clita aliquyam consetetur. Diam
-                dolor diam ipsum et, tempor voluptua sit consetetur sit.
-                Aliquyam diam amet diam et eos sadipscing labore. Clita erat
-                ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus
-                clita duo justo et tempor consetetur takimata eirmod, dolores
-                takimata consetetur invidunt
-              </p>
+              <p>{data.description}</p>
               <div className="d-flex pt-1">
                 <h6>Share on:</h6>
                 <div className="d-inline-flex">

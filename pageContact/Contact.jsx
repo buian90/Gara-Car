@@ -1,5 +1,5 @@
 import BannerContact from "./BannerContact";
-
+import BackTop from "../src/components/BackTop"
 const Contact = () => {
   
   return (
@@ -57,6 +57,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      <BackTop />
     </>
   );
 };

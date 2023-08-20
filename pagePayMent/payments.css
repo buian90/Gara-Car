@@ -33,5 +33,27 @@ input {
   border-radius: 7em;
 }
 .pay-count {
+  width: 100px;
   display: flex;
+}
+.info-product {
+  display: flex;
+}
+
+.images-product img {
+  width: 100px;
+  height: auto;
+}
+.quantity-product {
+  width: 100px;
+}
+td,
+th {
+  text-align: center;
+  vertical-align: middle;
+}
+input#price-number-product {
+  text-align: center;
+  /* padding: 0 !important; */
+  padding-left: 10px;
 }
