@@ -51,6 +51,7 @@ const BookingCar = () => {
     console.log(cartOld);
     if (cartOld) {
       localStorage.setItem("arrayCart", JSON.stringify(cartOld));
+      
     } else {
       localStorage.setItem("arrayCart", JSON.stringify(arrayCart));
     }
