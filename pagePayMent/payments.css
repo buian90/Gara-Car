@@ -57,3 +57,10 @@ input#price-number-product {
   /* padding: 0 !important; */
   padding-left: 10px;
 }
+.trash-cart button {
+  border: 0px;
+  background-color: #f2f2f2;
+}
+.bg-product tr td {
+  background-color: #f2f2f2;
+}

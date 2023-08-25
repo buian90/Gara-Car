@@ -5,8 +5,7 @@ import BackTop from "../src/components/BackTop";
 import Button from "react-bootstrap/esm/Button";
 import { toast } from "react-toastify";
 import { useCart } from "../src/components/CartContext";
-import CarSale from "../pageCar/CarSale";
-import { useState } from "react";
+
 import useGetApi from "../pageCar/UseGetApi";
 
 const BookingCar = () => {
@@ -18,47 +17,34 @@ const BookingCar = () => {
   const { increaseCartCount } = useCart();
   const handleClick = () => {
     // lay gia tri cua san pham
+
+    const cartOld = JSON.parse(localStorage.getItem("arrayCart")) || [];
+
     const imgCart = document.querySelector(".img-fluid").src;
     const priceCart = document.querySelector(".price-cart").innerHTML;
     const titleCart = document.querySelector(".title-cart").innerHTML;
 
-    // Kiem tra da mua san pham nao truoc day hay chua
-    const cartOld = JSON.parse(localStorage.getItem("arrayCart"));
-    let productExistsInCart = false;
+    const productExistsInCart = cartOld.some((item) => item.images === imgCart);
 
-    cartOld &&
-      cartOld.map((item) => {
-        if (item.images === imgCart) {
-          productExistsInCart = true;
-          alert("San pham da ton tai trong gio hang");
-        }
-      });
-    if (productExistsInCart === true) {
+    if (productExistsInCart) {
+      alert("Sản phẩm đã tồn tại trong giỏ hàng");
       return;
     }
-    // increaseCartCount();
-    const arrayCart = [
-      {
-        images: imgCart,
-        price: priceCart,
-        title: titleCart,
-        quality: 1,
-      },
-    ];
 
-    // Them vao gio hang cua minh tu san pham thu 2 tro di
-    cartOld && cartOld.push(arrayCart);
-    console.log(cartOld);
-    if (cartOld) {
-      localStorage.setItem("arrayCart", JSON.stringify(cartOld));
-      
-    } else {
-      localStorage.setItem("arrayCart", JSON.stringify(arrayCart));
-    }
+    const newItem = {
+      images: imgCart,
+      price: priceCart,
+      title: titleCart,
+      quality: 1,
+    };
+
+    const updatedCart = [...cartOld, newItem];
+
+    localStorage.setItem("arrayCart", JSON.stringify(updatedCart));
 
     toast.success("Sản phẩm đã thêm vào giỏ hàng", {
       position: "top-center",
-      autoClose: 5000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -66,9 +52,10 @@ const BookingCar = () => {
       progress: undefined,
       theme: "light",
     });
+
     setTimeout(() => {
-      navigate("/carsale"); // điều hướng đến trang carsale
-    }, 2000);
+      navigate("/payments");
+    }, 500);
   };
 
   return (

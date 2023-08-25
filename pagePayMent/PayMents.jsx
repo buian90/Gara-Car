@@ -1,29 +1,17 @@
+import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import PaymentForm from "./PayMentsForm";
-
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useState } from "react";
 import { Table } from "react-bootstrap";
+import 'boxicons'
 
 const PayMents = () => {
-  const cart = JSON.parse(localStorage.getItem("arrayCart"));
-  console.log(cart);
-  // Logic tinh toán giá sản phẩm
-  let total = 0;
-  if (cart && cart.length > 0) {
-    cart.forEach((item) => {
-      let price = item.price;
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("arrayCart")) || []
+  );
 
-      if (price) {
-        const priceNumber = parseFloat(price.replace("$", ""));
-        let quality = item.quality;
-        let itemPrice = priceNumber * quality;
-        total = total + itemPrice;
-      }
-    });
-  }
   const {
     handleSubmit,
     control,
@@ -31,118 +19,135 @@ const PayMents = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data); // Dữ liệu của form
     // Gửi dữ liệu lên server hoặc thực hiện các xử lý khác
+    console.log(data); // Dữ liệu của form
   };
 
-  // Caculator price product
-  const intialProductQuantities = {};
-  cart.forEach((item, index) => {
-    intialProductQuantities[index] = item.quality;
-  });
-  const [productQuantities, setProductQuantities] = useState(
-    intialProductQuantities
-  );
-  const handleQuantityChange = (productId, newQuantity) => {
-    setProductQuantities((prevQuantities) => ({
-      ...prevQuantities,
-      [productId]: newQuantity,
-    }));
-  };
+  const [productQuantities, setProductQuantities] = useState({});
 
   const increment = (productId) => {
-    const newQuantity = (productQuantities[productId] || 0) + 1;
-    handleQuantityChange(productId, newQuantity);
+    const updatedCart = cart.map((item, index) =>
+      index === productId ? { ...item, quality: item.quality + 1 } : item
+    );
+    localStorage.setItem("arrayCart", JSON.stringify(updatedCart));
+    setCart(updatedCart);
   };
 
   const decrement = (productId) => {
-    if (productQuantities[productId] > 0) {
-      const newQuantity = productQuantities[productId] - 1;
-      handleQuantityChange(productId, newQuantity);
-    }
+    const updatedCart = cart.map((item, index) =>
+      index === productId && item.quality > 0
+        ? { ...item, quality: item.quality - 1 }
+        : item
+    );
+    localStorage.setItem("arrayCart", JSON.stringify(updatedCart));
+    setCart(updatedCart);
   };
+
+  const removeFromCart = (productId) => {
+    const updatedCart = cart.filter((item, index) => index !== productId);
+    localStorage.setItem("arrayCart", JSON.stringify(updatedCart));
+    setCart(updatedCart);
+  };
+
+  useEffect(() => {
+    const initialQuantities = {};
+    cart.forEach((item, index) => {
+      initialQuantities[index] = item.quality;
+    });
+    setProductQuantities(initialQuantities);
+  }, [cart]);
+
+  const total = cart.reduce((acc, item, index) => {
+    const priceNumber = item.price
+      ? parseFloat(item.price.replace("$", ""))
+      : 0;
+    const productTotal = priceNumber * (productQuantities[index] || 0);
+    return acc + productTotal;
+  }, 0);
+
   return (
     <>
-      <div className="paymentsform">
+          <div className="paymentsform">
         <Container>
           <Row>
             <Col sm={12} md={6} lg={6} className="payments1">
-              <h1>PayMents</h1>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="pay-input">
-                  <label>Name</label>
-                  <Controller
-                    name="name"
-                    control={control}
-                    defaultValue=""
-                    rules={{ required: "Name is required" }}
-                    render={({ field }) => (
-                      <div>
-                        <input {...field} />
+            <form onSubmit={handleSubmit(onSubmit)}>
+                        <div className="pay-input">
+                          <label>Name</label>
+                          <Controller
+                            name="name"
+                            control={control}
+                            defaultValue=""
+                            rules={{ required: "Name is required" }}
+                            render={({ field }) => (
+                              <div>
+                                <input {...field} />
 
-                        {errors.name && <p>{errors.name.message}</p>}
-                      </div>
-                    )}
-                  />
-                </div>
+                                {errors.name && <p>{errors.name.message}</p>}
+                              </div>
+                            )}
+                          />
+                        </div>
 
-                <div className="pay-input">
-                  <label>Email</label>
-                  <Controller
-                    name="email"
-                    control={control}
-                    defaultValue=""
-                    rules={{
-                      required: "Email is required",
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                        message: "Invalid email address",
-                      },
-                    }}
-                    render={({ field }) => (
-                      <div>
-                        <input {...field} />
-                        {errors.email && <p>{errors.email.message}</p>}
-                      </div>
-                    )}
-                  />
-                </div>
+                        <div className="pay-input">
+                          <label>Email</label>
+                          <Controller
+                            name="email"
+                            control={control}
+                            defaultValue=""
+                            rules={{
+                              required: "Email is required",
+                              pattern: {
+                                value:
+                                  /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                                message: "Invalid email address",
+                              },
+                            }}
+                            render={({ field }) => (
+                              <div>
+                                <input {...field} />
+                                {errors.email && <p>{errors.email.message}</p>}
+                              </div>
+                            )}
+                          />
+                        </div>
 
-                <div className="pay-input">
-                  <label>Address</label>
-                  <Controller
-                    name="address"
-                    control={control}
-                    defaultValue=""
-                    rules={{ required: "Address is required" }}
-                    render={({ field }) => (
-                      <div>
-                        <input {...field} />
-                        {errors.address && <p>{errors.address.message}</p>}
-                      </div>
-                    )}
-                  />
-                </div>
+                        <div className="pay-input">
+                          <label>Address</label>
+                          <Controller
+                            name="address"
+                            control={control}
+                            defaultValue=""
+                            rules={{ required: "Address is required" }}
+                            render={({ field }) => (
+                              <div>
+                                <input {...field} />
+                                {errors.address && (
+                                  <p>{errors.address.message}</p>
+                                )}
+                              </div>
+                            )}
+                          />
+                        </div>
 
-                <div className="pay-input">
-                  <label>Phone</label>
-                  <Controller
-                    name="phone"
-                    control={control}
-                    defaultValue=""
-                    rules={{ required: "Phone is required" }}
-                    render={({ field }) => (
-                      <div>
-                        <input {...field} />
-                        {errors.phone && <p>{errors.phone.message}</p>}
-                      </div>
-                    )}
-                  />
-                </div>
+                        <div className="pay-input">
+                          <label>Phone</label>
+                          <Controller
+                            name="phone"
+                            control={control}
+                            defaultValue=""
+                            rules={{ required: "Phone is required" }}
+                            render={({ field }) => (
+                              <div>
+                                <input {...field} />
+                                {errors.phone && <p>{errors.phone.message}</p>}
+                              </div>
+                            )}
+                          />
+                        </div>
 
-                {/* Thêm các trường khác và logic validation tương tự */}
-              </form>
-
+                        {/* Thêm các trường khác và logic validation tương tự */}
+                      </form>
               <PaymentForm />
             </Col>
             <Col sm={12} md={6} lg={6} className="payments2">
@@ -152,44 +157,50 @@ const PayMents = () => {
                     <th>Images</th>
                     <th>Name</th>
                     <th>Price</th>
-                    <th>ToTal</th>
+                    <th>Total</th>
                     <th>Quantity</th>
                   </tr>
                 </thead>
                 <tbody>
                   {cart.length > 0 &&
                     cart.map((item, index) => {
-                      const productId = index;
-
                       const priceNumber = item.price
                         ? parseFloat(item.price.replace("$", ""))
                         : 0;
-
                       const productTotal =
-                        priceNumber * (productQuantities[productId] || 0);
+                        priceNumber * (productQuantities[index] || 0);
+
                       return (
-                        <tr key={item}>
+                        <tr key={item} className="bg-product">
                           <td className="images-product">
-                            <img src={item.images} />
+                            <img src={item.images} alt={item.title} />
                           </td>
                           <td>{item.title}</td>
-                          <td> {item.price} </td>
-                          <td> ${productTotal.toFixed(2)}</td>
+                          <td>{item.price}</td>
+                          <td>${productTotal.toFixed(2)}</td>
                           <td className="quantity-product">
                             <div className="pay-count">
-                              <button onClick={() => decrement(productId)}>
+                              <button onClick={() => decrement(index)}>
                                 -
                               </button>
                               <input
                                 id="price-number-product"
                                 type="number"
-                                value={productQuantities[productId] || 0}
+                                value={productQuantities[index] || 0}
                                 min={0}
                                 readOnly
                               />
-                              <button onClick={() => increment(productId)}>
+                              <button onClick={() => increment(index)}>
                                 +
                               </button>
+                            </div>
+                          </td>
+
+                          <td>
+                            <div className="trash-cart">
+                            <button onClick={() => removeFromCart(index)}>
+                              <box-icon name="trash"></box-icon>
+                            </button>
                             </div>
                           </td>
                         </tr>
@@ -197,6 +208,7 @@ const PayMents = () => {
                     })}
                 </tbody>
               </Table>
+              <h4>Total: ${total.toFixed(2)}</h4>
             </Col>
           </Row>
         </Container>
